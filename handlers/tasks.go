@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/Thifany-Nicastro/Go-Docker/database"
 	"github.com/Thifany-Nicastro/Go-Docker/models"
+	"github.com/Thifany-Nicastro/Go-Docker/repositories"
 )
 
 func Home(c *fiber.Ctx) error {
@@ -19,15 +19,13 @@ func CreateTask(c *fiber.Ctx) error {
         })
     }
 
-    database.DB.Db.Create(&task)
+    repositories.CreateTask(task)
 
     return c.Status(200).JSON(task)
 }
 
 func ListTasks(c *fiber.Ctx) error {
-    tasks := []models.Task{}
-	
-    database.DB.Db.Find(&tasks)
+    tasks := repositories.FindAllTasks()
 
     return c.Status(200).JSON(tasks)
 }
