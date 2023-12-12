@@ -6,13 +6,17 @@ import (
 )
 
 func FindAllTasks() []models.Task {
-    tasks := []models.Task{}
-	
-    database.DB.Db.Find(&tasks)
+	tasks := []models.Task{}
 
-    return tasks
+	database.DB.Db.Find(&tasks)
+
+	return tasks
 }
 
 func CreateTask(task *models.Task) {
-    database.DB.Db.Create(task)
+	database.DB.Db.Create(task)
+}
+
+func DeleteTask(id int) {
+	database.DB.Db.Delete(id)
 }
