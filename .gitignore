@@ -7,5 +7,4 @@
 vendor/
 tmp/
 
-*.txt
 .env
