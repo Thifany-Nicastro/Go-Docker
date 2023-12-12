@@ -11,4 +11,6 @@ func setupRoutes(app *fiber.App) {
 	app.Post("/tasks", handlers.CreateTask)
 
 	app.Delete("/tasks/:id", handlers.DeleteTask)
+
+	app.Get("/tasks/:id", handlers.FindTask)
 }

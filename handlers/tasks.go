@@ -47,3 +47,19 @@ func DeleteTask(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON("Task deleted")
 }
+
+func FindTask(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Params("id"))
+
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"status":  400,
+			"message": "Fail",
+			"err":     err,
+		})
+	}
+
+	task := repositories.FindTaskById(id)
+
+	return c.Status(200).JSON(task)
+}
